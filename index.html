@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600&family=Noto+Sans:wght@500;700&display=swap" rel="stylesheet">
+		<style>
+			#boardMembersPage {
+				--black: #000000;
+				--white: #FFFFFF;
+				--neon-red: #FF0000;
+				--neon-red-light: #FFAAAA;
+				background-color: var(--black);
+				height: 100%;
+				width: 100%;
+			}
+			#boardMembersPage > #header > h1, #boardMembersPage > #header > h2 {
+				width: 100%;
+				text-align: center;
+				color: var(--neon-red-light);
+				text-shadow: var(--neon-red) 0 0 0.5ex;
+			}
+			#boardMembersPage > #header > h1 {
+				width: 100%;
+				text-align: center;
+				font-size: 10vw;
+				font-family: "Noto Sans JP", sans-serif;
+				margin: 1vh 0;
+			}
+			#boardMembersPage > #header > h2 {
+				text-align: center;
+				font-size: 5vw;
+				font-family: "Noto Sans", sans-serif;
+				margin: 0 0 100vh 0;
+			}
+			#boardMembersPage > article {
+				--article-padding: 3ex;
+				padding: var(--article-padding);
+				margin: 10vh 0;
+				--article-width: 70%;
+				width: var(--article-width);
+				height: 50vh;
+				position: relative;
+				animation-fill-mode: forwards;
+				color: var(--neon-color-light);
+				text-align: right;
+				font-family: "Noto Sans", sans-serif;
+				text-shadow: var(--neon-color) 0 0 1ex;
+				box-sizing: border-box;
+				position: relative;
+				/*Initial property changed by script*/
+				opacity: 0;
+			}
+			#boardMembersPage > article *::selection {
+				background-color: var(--neon-color);
+				color: var(--black);
+			}
+			#boardMembersPage > article.alternate-style {
+				text-align: left;
+			}
+			#boardMembersPage > article:nth-child(odd) {
+				margin: 2vh 0 2vh calc(100% - var(--article-width));
+				text-align: left;
+			}
+			#boardMembersPage > article.alternate-style:nth-child(odd) {
+				text-align: right;
+			}
+			#boardMembersPage > article::after {
+				content: "";
+				display: block;
+				width: calc(100% + var(--article-padding));
+				height: 1ex;
+				border-radius: 0 2vh 2vh 0;
+				background-color: var(--neon-color-light);
+				box-shadow: 0 0 2vh 1vh var(--neon-color);
+				position: absolute;
+				right: var(--article-padding);
+				bottom: 0;
+			}
+			#boardMembersPage > article:nth-child(odd)::after {
+				left: 0;
+				border-radius: 2vh 0 0 2vh;
+			}
+			#boardMembersPage > article > img {
+				float: right;
+				height: 100%;
+				margin: 0 2ex;
+				position: relative;
+			}
+			#boardMembersPage > article:nth-child(odd) > img {
+				float: left;
+			}
+			#boardMembersPage > article > h2 {
+				/*calc() uses eyeballed values to scale with the aspect ratio, and min() prevents the text from getting too large; same for h3 and ul*/
+				font-size: min(calc((70vw - 50vh)/8), 8vh);
+				margin: -0.5ex 0 0vh 0;
+			}
+			#boardMembersPage > article > h3 {
+				font-size: min(calc((70vw - 50vh)/12), 5.333vh);
+				margin: -0.5ex 0 1vh 0;
+				font-family: "Noto Sans JP", sans-serif;
+			}
+			#boardMembersPage > article > ul {
+				font-size: min(calc((70vw - 50vh)/24), 3vh);
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			#boardMembersPage > article > ul > li:first-child > strong {
+				font-size: min(calc((70vw - 50vh)/20), 3.6vh);
+			}
+			#boardMembersPage > article:not(.alternate-style):nth-child(odd) > ul > li::before {
+				content: "\25C6";
+			}
+			#boardMembersPage > article:not(.alternate-style):nth-child(even) > ul > li::after {
+				content: "\25C6";
+			}
+			#boardMembersPage > article.alternate-style:nth-child(odd) > ul > li::after {
+				content: "\25C6";
+			}
+			#boardMembersPage > article.alternate-style:nth-child(even) > ul > li::before {
+				content: "\25C6";
+			}
+
+			#denise {
+				--neon-color: #dd2500;
+				--neon-color-light: #ff8301;
+			}
+			#michiru {
+				--neon-color: #ff8315;
+				--neon-color-light: #fff963;
+			}
+			#chase {
+				--neon-color: #b99145;
+				--neon-color-light: #faf3e8;
+			}
+			#cameron {
+				--neon-color: #ddccc3;
+				--neon-color-light: #f0ded2;
+			}
+			#bennett {
+				--neon-color: #0aa23d;
+				--neon-color-light: #92d5be;
+			}
+			#jessica {
+				--neon-color: #2ffde7;
+				--neon-color-light: #defdfb;
+			}
+			#jp {
+				--neon-color: #2229cb;
+				--neon-color-light: #6aadce;
+			}
+			#matthew {
+				--neon-color: #1315a5;
+				--neon-color-light: #ffffff;
+			}
+			#ethan {
+				--neon-color: #05ecf3;
+				--neon-color-light: #fcfbfb;
+			}
+			#sam {
+				--neon-color: #12e6f1;
+				--neon-color-light: #dfe6f1;
+			}
+			#bridget {
+				--neon-color: #cb17cc;
+				--neon-color-light: #e920ec;
+			}
+			#uri {
+				--neon-color: #7909f1;
+				--neon-color-light: #d0bdea;
+			}
+			#alex {
+				--neon-color: #e410a5;
+				--neon-color-light: #dbc2d1;
+			}
+			#mccain {
+				--neon-color: #f10983;
+				--neon-color-light: #ff6ce2;
+			}
+			#takanori {
+				--neon-color: #b4b0af;
+				--neon-color-light: #f3ecef;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>
+				混沌時代
+			</h1>
+			<h2>
+				2023-2024
+			</h2>
+		</header>
+		<article class="alternate-style" id="jp">
+			<img src="jp.png" alt="JP Haratani" fetchpriority="high" loading="eager" />
+			<h2>
+				JP Haratani
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>President</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="bridget">
+			<img src="bridget.png" alt="Bridget Morgan" fetchpriority="high" loading="eager" />
+			<h2>
+				Bridget Morgan
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Vice president</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="uri">
+			<img src="uri.png" alt="Uri Ramirez" fetchpriority="high" loading="eager" />
+			<h2>
+				Uri Ramirez
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Treasurer</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="mccain">
+			<img src="mccain.png" alt="McCain Potasky" fetchpriority="high" loading="eager" />
+			<h2>
+				McCain Potasky
+			</h2>
+			<h3>
+				ポタスキー・マケイン
+			</h3>
+			<ul>
+				<li>
+					<strong>Secretary</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="alex">
+			<img src="alex.png" alt="Alex Nishida" fetchpriority="high" loading="eager" />
+			<h2>
+				Alex Nishida
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Media coord</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="jessica">
+			<img src="jessica.png" alt="Jessica Mason" fetchpriority="high" loading="eager" />
+			<h2>
+				Jessica Mason
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Media coord</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="denise">
+			<img src="denise.png" alt="Denise Heredia" fetchpriority="high" loading="eager" />
+			<h2>
+				Denise Heredia
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Historian</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="michiru">
+			<img src="michiru.png" alt="Michiru Warren" fetchpriority="high" loading="eager" />
+			<h2>
+				Michiru Warren
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Cultural ambassador</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="takanori">
+			<img src="takanori.png" alt="Takanori Nonomura" fetchpriority="high" loading="eager" />
+			<h2>
+		Takanori Nonomura
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Cultural ambassador</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="bennett">
+			<img src="bennett.png" alt="Bennett Klusman" fetchpriority="high" loading="eager" />
+			<h2>
+				Bennett Klusman
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Event coord</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="chase">
+			<img src="chase.png" alt="Chase Bradley" fetchpriority="high" loading="eager" />
+			<h2>
+				Chase Bradley
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Event coord</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="matthew">
+			<img src="matthew.png" alt="Matthew Manzanares" fetchpriority="high" loading="eager" />
+			<h2>
+				Matthew Manzanares
+			</h2>
+			<h3>
+				マンザナレス・マット
+			</h3>
+			<ul>
+				<li>
+					<strong>Event coord</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="sam">
+			<img src="sam.png" alt="Sam Huang" fetchpriority="high" loading="eager" />
+			<h2>
+				Sam Huang
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Event coord</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="cameron">
+			<img src="cameron.png" alt="Cameron Hafer" fetchpriority="high" loading="eager" />
+			<h2>
+				Cameron Hafer
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Sports coord</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+		<article class="alternate-style" id="ethan">
+			<img src="ethan.png" alt="Ethan Yi" fetchpriority="high" loading="eager" />
+			<h2>
+				Ethan Yi
+			</h2>
+			<h3>
+				日本語の名前
+			</h3>
+			<ul>
+				<li>
+					<strong>Sports coord</strong>
+				</li>
+				<li>
+					<strong>Major:</strong> ?
+				</li>
+				<li>
+					<strong>Hometown:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite food:</strong> ?
+				</li>
+				<li>
+					<strong>Favorite color:</strong> ?
+				</li>
+			</ul>
+		</article>
+	</body>
+	<script>
+		function finalizeProperties(e) {
+			const TARGET = e.currentTarget.effect.target;
+			TARGET.style.opacity = 1;
+			if (Array.from(TARGET.parentNode.getElementsByTagName("article")).indexOf(TARGET) % 2 == 0) {
+				TARGET.style.right = 0;
+			} else {
+				TARGET.style.left = 0;
+			}
+		}
+		const ANIMATION_DURATION = 2000;
+		function animateElement(e) {
+			//Playing the display animation the element
+			let animation = null;
+			//Even and odd numbered articles are animated differently
+			if (Array.from(e.parentNode.getElementsByTagName("article")).indexOf(e) % 2 == 0) {
+				animation = e.animate([
+					{
+						opacity: "0",
+						right: "100%"
+					}, {
+						opacity: "1",
+						right: "0"
+					}
+				], ANIMATION_DURATION);
+			} else {
+				animation = e.animate([
+					{
+						opacity: "0",
+						left: "100%"
+					}, {
+						opacity: "1",
+						left: "0%"
+					}
+				], ANIMATION_DURATION);
+			}
+			//Finalizes the properties when the animation is finished
+			animation.addEventListener("finish", finalizeProperties);
+		}
+		async function displayElement(entries, observer) {
+			const TARGET = entries[0].target;
+			//Stop observing the element
+			observer.unobserve(TARGET);
+			//Display the element
+			animateElement(TARGET);
+		}
+		const ARTICLES = document.getElementById("boardMembersPage").getElementsByTagName("article");
+		const OBSERVER = new IntersectionObserver(displayElement, {
+			root: null,
+			threshold: 0.5
+		});
+		for (let i = 0; i < ARTICLES.length; i++) {
+			OBSERVER.observe(ARTICLES[i]);
+		}
+	</script>
+</html>
