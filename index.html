@@ -18,7 +18,7 @@
 				scrollbar-color: var(--white) var(--light-black);
 				scrollbar-width: thin;
 				overflow-x: hidden;
-			}
+			}s
 			body::-webkit-scrollbar {
 				width: 0.5vw;
 				background-color: var(--light-black);
@@ -29,6 +29,10 @@
 			body::-webkit-scrollbar-thumb {
 				background-color: var(--white);
 				border-radius: 0.25vw;
+			}
+			body *::selection {
+				background-color: var(--white);
+				color: var(--black);
 			}
 			nav {
 				display: flex;
@@ -42,6 +46,10 @@
 				color: var(--white);
 				text-decoration: none;
 				margin: 0.5ch 8ch;
+			}
+			header *::selection {
+				background-color: var(--neon-red);
+				color: var(--black);
 			}
 			header > h1, header > h2 {
 				width: 100%;
