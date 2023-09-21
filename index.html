@@ -13,6 +13,20 @@
 				background-color: var(--black);
 				height: 100%;
 				width: 100%;
+				font-family: "Noto Sans", sans-serif;
+			}
+			nav {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				border-width: 0 0 1vh 0;
+				border-style: solid;
+				border-color: var(--white);
+			}
+			nav > a {
+				color: var(--white);
+				text-decoration: none;
+				margin: 0.5ch 8ch;
 			}
 			header > h1, boardMembersPage > header > h2 {
 				width: 100%;
@@ -30,7 +44,6 @@
 			header > h2 {
 				text-align: center;
 				font-size: 5vw;
-				font-family: "Noto Sans", sans-serif;
 				margin: 0 0 100vh 0;
 			}
 			article {
@@ -44,7 +57,6 @@
 				animation-fill-mode: forwards;
 				color: var(--neon-color-light);
 				text-align: right;
-				font-family: "Noto Sans", sans-serif;
 				text-shadow: var(--neon-color) 0 0 1ex;
 				box-sizing: border-box;
 				position: relative;
@@ -58,11 +70,11 @@
 			article.alternate-style {
 				text-align: left;
 			}
-			article:nth-child(odd) {
+			article:nth-of-type(even) {
 				margin: 2vh 0 2vh calc(100% - var(--article-width));
 				text-align: left;
 			}
-			article.alternate-style:nth-child(odd) {
+			article.alternate-style:nth-of-type(even) {
 				text-align: right;
 			}
 			article::after {
@@ -77,7 +89,7 @@
 				right: var(--article-padding);
 				bottom: 0;
 			}
-			article:nth-child(odd)::after {
+			article:nth-of-type(even)::after {
 				left: 0;
 				border-radius: 2vh 0 0 2vh;
 			}
@@ -87,7 +99,7 @@
 				margin: 0 2ex;
 				position: relative;
 			}
-			article:nth-child(odd) > img {
+			article:nth-of-type(even) > img {
 				float: left;
 			}
 			article > h2 {
@@ -109,16 +121,16 @@
 			article > ul > li:first-child > strong {
 				font-size: min(calc((70vw - 50vh)/20), 3.6vh);
 			}
-			article:not(.alternate-style):nth-child(odd) > ul > li::before {
+			article:not(.alternate-style):nth-of-type(even) > ul > li::before {
 				content: "\25C6";
 			}
-			article:not(.alternate-style):nth-child(even) > ul > li::after {
+			article:not(.alternate-style):nth-of-type(odd) > ul > li::after {
 				content: "\25C6";
 			}
-			article.alternate-style:nth-child(odd) > ul > li::after {
+			article.alternate-style:nth-of-type(even) > ul > li::after {
 				content: "\25C6";
 			}
-			article.alternate-style:nth-child(even) > ul > li::before {
+			article.alternate-style:nth-of-type(odd) > ul > li::before {
 				content: "\25C6";
 			}
 
@@ -185,6 +197,17 @@
 		</style>
 	</head>
 	<body>
+		<nav>
+			<a href="https://jsacalpoly.wixsite.com/home/board">
+				ABOUT
+			</a>
+			<a href="#">
+				OUR BOARD
+			</a>
+			<a href="https://jsacalpoly.wixsite.com/home/services-1">
+				EVENTS
+			</a>
+		</nav>
 		<header>
 			<h1>
 				混沌時代
