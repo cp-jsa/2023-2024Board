@@ -18,7 +18,7 @@
 				scrollbar-color: var(--white) var(--light-black);
 				scrollbar-width: thin;
 				overflow-x: hidden;
-			}s
+			}
 			body::-webkit-scrollbar {
 				width: 0.5vw;
 				background-color: var(--light-black);
@@ -41,11 +41,29 @@
 				border-width: 0 0 1vh 0;
 				border-style: solid;
 				border-color: var(--white);
+				position: relative;
 			}
-			nav > a {
+			nav a, nav p {
 				color: var(--white);
 				text-decoration: none;
-				margin: 0.5ch 8ch;
+				text-align: center;
+				white-space: nowrap;
+			}
+			nav > .dropdown > div {
+				display: none;
+				background-color: var(--black);
+				border-width: 0 0.1ch 0.1ch 0.1ch;
+				border-style: solid;
+				border-color: var(--white);
+				padding: 0.5ch;
+				position: absolute;
+				top: 100%;
+			}
+			nav > .dropdown > div > a {
+				margin: 0.5ch 0;
+			}
+			nav > .dropdown:hover > div, nav > .dropdown > div:hover {
+				display: block;
 			}
 			header *::selection {
 				background-color: var(--neon-red);
@@ -225,11 +243,40 @@
 			<a href="https://jsacalpoly.wixsite.com/home/board">
 				ABOUT
 			</a>
-			<a href="#">
-				OUR BOARD
-			</a>
+			<div class="dropdown">
+				<a href="#">
+					OUR BOARD
+				</a>
+				<div>
+					<a href="https://jsacalpoly.wixsite.com/home/previous-eras">
+						PREVIOUS ERAS
+					</a>
+				</div>
+			</div>
 			<a href="https://jsacalpoly.wixsite.com/home/services-1">
 				EVENTS
+			</a>
+			<div class="dropdown">
+				<a href="https://jsacalpoly.wixsite.com/home/projects">
+					PROJECTS
+				</a>
+				<div>
+					<a href="https://jsacalpoly.wixsite.com/home/torii">
+						TORII
+					</a>
+					<a href="https://jsacalpoly.wixsite.com/home/genkey">
+						GENKEY
+					</a>
+					<a href="https://jsacalpoly.wixsite.com/home/cookbook">
+						COOKBOOK
+					</a>
+				</div>
+			</div>
+			<a href="https://jsacalpoly.wixsite.com/home/senpai-x-kouhai">
+				SENPAI-KOUHAI
+			</a>
+			<a href="https://jsacalpoly.wixsite.com/home/not-100-japanese-blog">
+				BLOG
 			</a>
 		</nav>
 		<header>
