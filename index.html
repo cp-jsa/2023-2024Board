@@ -5,7 +5,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@600&family=Noto+Sans:wght@500;700&display=swap" rel="stylesheet">
 		<style>
-			#boardMembersPage {
+			body {
 				--black: #000000;
 				--white: #FFFFFF;
 				--neon-red: #FF0000;
@@ -14,26 +14,26 @@
 				height: 100%;
 				width: 100%;
 			}
-			#boardMembersPage > #header > h1, #boardMembersPage > #header > h2 {
+			header > h1, boardMembersPage > header > h2 {
 				width: 100%;
 				text-align: center;
 				color: var(--neon-red-light);
 				text-shadow: var(--neon-red) 0 0 0.5ex;
 			}
-			#boardMembersPage > #header > h1 {
+			header > h1 {
 				width: 100%;
 				text-align: center;
 				font-size: 10vw;
 				font-family: "Noto Sans JP", sans-serif;
 				margin: 1vh 0;
 			}
-			#boardMembersPage > #header > h2 {
+			header > h2 {
 				text-align: center;
 				font-size: 5vw;
 				font-family: "Noto Sans", sans-serif;
 				margin: 0 0 100vh 0;
 			}
-			#boardMembersPage > article {
+			article {
 				--article-padding: 3ex;
 				padding: var(--article-padding);
 				margin: 10vh 0;
@@ -51,21 +51,21 @@
 				/*Initial property changed by script*/
 				opacity: 0;
 			}
-			#boardMembersPage > article *::selection {
+			article *::selection {
 				background-color: var(--neon-color);
 				color: var(--black);
 			}
-			#boardMembersPage > article.alternate-style {
+			article.alternate-style {
 				text-align: left;
 			}
-			#boardMembersPage > article:nth-child(odd) {
+			article:nth-child(odd) {
 				margin: 2vh 0 2vh calc(100% - var(--article-width));
 				text-align: left;
 			}
-			#boardMembersPage > article.alternate-style:nth-child(odd) {
+			article.alternate-style:nth-child(odd) {
 				text-align: right;
 			}
-			#boardMembersPage > article::after {
+			article::after {
 				content: "";
 				display: block;
 				width: calc(100% + var(--article-padding));
@@ -77,48 +77,48 @@
 				right: var(--article-padding);
 				bottom: 0;
 			}
-			#boardMembersPage > article:nth-child(odd)::after {
+			article:nth-child(odd)::after {
 				left: 0;
 				border-radius: 2vh 0 0 2vh;
 			}
-			#boardMembersPage > article > img {
+			article > img {
 				float: right;
 				height: 100%;
 				margin: 0 2ex;
 				position: relative;
 			}
-			#boardMembersPage > article:nth-child(odd) > img {
+			article:nth-child(odd) > img {
 				float: left;
 			}
-			#boardMembersPage > article > h2 {
+			article > h2 {
 				/*calc() uses eyeballed values to scale with the aspect ratio, and min() prevents the text from getting too large; same for h3 and ul*/
 				font-size: min(calc((70vw - 50vh)/8), 8vh);
 				margin: -0.5ex 0 0vh 0;
 			}
-			#boardMembersPage > article > h3 {
+			article > h3 {
 				font-size: min(calc((70vw - 50vh)/12), 5.333vh);
 				margin: -0.5ex 0 1vh 0;
 				font-family: "Noto Sans JP", sans-serif;
 			}
-			#boardMembersPage > article > ul {
+			article > ul {
 				font-size: min(calc((70vw - 50vh)/24), 3vh);
 				margin: 0;
 				padding: 0;
 				list-style: none;
 			}
-			#boardMembersPage > article > ul > li:first-child > strong {
+			article > ul > li:first-child > strong {
 				font-size: min(calc((70vw - 50vh)/20), 3.6vh);
 			}
-			#boardMembersPage > article:not(.alternate-style):nth-child(odd) > ul > li::before {
+			article:not(.alternate-style):nth-child(odd) > ul > li::before {
 				content: "\25C6";
 			}
-			#boardMembersPage > article:not(.alternate-style):nth-child(even) > ul > li::after {
+			article:not(.alternate-style):nth-child(even) > ul > li::after {
 				content: "\25C6";
 			}
-			#boardMembersPage > article.alternate-style:nth-child(odd) > ul > li::after {
+			article.alternate-style:nth-child(odd) > ul > li::after {
 				content: "\25C6";
 			}
-			#boardMembersPage > article.alternate-style:nth-child(even) > ul > li::before {
+			article.alternate-style:nth-child(even) > ul > li::before {
 				content: "\25C6";
 			}
 
