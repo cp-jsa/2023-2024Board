@@ -630,7 +630,7 @@
 			//Display the element
 			animateElement(TARGET);
 		}
-		const ARTICLES = document.getElementById("boardMembersPage").getElementsByTagName("article");
+		const ARTICLES = document.getElementsByTagName("article");
 		const OBSERVER = new IntersectionObserver(displayElement, {
 			root: null,
 			threshold: 0.5
